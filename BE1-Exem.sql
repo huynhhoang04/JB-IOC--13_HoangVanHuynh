@@ -141,7 +141,7 @@ from Customer c
 join Booking B on c.customer_id = B.customer_id
 join Payment P on B.booking_id = P.booking_id
 group by c.customer_id, c.customer_full_name, b.room_id
-having sum(p.payment_amount) < 1000;
+having sum(p.payment_amount) > 1000;
 
 --13
 select c.customer_id, c.customer_full_name, c.customer_email, c.customer_phone, c.customer_address
@@ -258,3 +258,4 @@ as $$
 
 
 call add_payment(6, 'Cash',3600.0, '2025-03-10');
+
