@@ -133,7 +133,7 @@ from Booking as b
 join Room r on r.room_id = b.room_id
 join Payment p on b.booking_id = p.booking_id
 group by r.room_type, b.room_id, r.room_price
-having sum(p.payment_amount) < 1000 and count(b.customer_id) >= 3;
+having sum(p.payment_amount) < 1000 and count(distinct b.customer_id) >= 3;
 
 --12
 select c.customer_id, c.customer_full_name, b.room_id, sum(p.payment_amount) as "tong_tien"
@@ -254,6 +254,7 @@ as $$
         values (p_booking_id, p_payment_method, p_payment_date, p_payment_amount);
     end;
     $$;
+
 
 
 call add_payment(6, 'Cash',3600.0, '2025-03-10');
