@@ -116,8 +116,8 @@ order by p.payment_amount desc ;
 select *
 from Customer
 order by customer_full_name
-offset 2
-limit 2;
+offset 1
+limit 3;
 
 --10
 select c.customer_id, c.customer_full_name, count(distinct b.room_id) as "sl_phong", sum(P.payment_amount) as "tong-tien"
@@ -146,13 +146,13 @@ having sum(p.payment_amount) > 1000;
 --13
 select c.customer_id, c.customer_full_name, c.customer_email, c.customer_phone, c.customer_address
 from Customer c
-where c.customer_full_name ilike '%Minh%' or c.customer_address ilike '%%Hanoi%'
+where c.customer_full_name ilike '%Minh%' or c.customer_address ilike '%Hanoi%'
 order by c.customer_full_name asc ;
 
 --14
 select r.room_id, r.room_type, r.room_price
 from Room as r
-order by r.room_price
+order by r.room_price desc
 offset 5
 limit 5;
 
@@ -258,4 +258,5 @@ as $$
 
 
 call add_payment(6, 'Cash',3600.0, '2025-03-10');
+
 
